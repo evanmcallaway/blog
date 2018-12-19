@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
 
     def index
-        @articles = Article.all
+        @articles = Article.tagged(params[:tag])
         @tag = Tag.all
     end
 

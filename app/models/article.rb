@@ -5,6 +5,8 @@ class Article < ApplicationRecord
     has_many :taggings, dependent: :delete_all
     has_many :tags, through: :taggings
 
+    scope :tagged, -> (tag){ joins(:tags).where(tags: { name: tag}) if tag }
+
     def tags_string
         tags.map(&:name).join(', ')
     end
